@@ -5,80 +5,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cat Facts App</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f4f8;
-            color: #333;
-            margin: 0;
-            padding: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+        :root {
+            --bg: #0f172a;
+            --panel: rgba(18, 40, 72, 0.88);
+            --panel-border: rgba(255, 255, 255, 0.12);
+            --text: #eef2ff;
+            --muted: #cbd5e1;
+            --accent: #60a5fa;
+            --accent-strong: #38bdf8;
+            --shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
         }
-        .container {
-            background: white;
-            padding: 2.5rem 3rem;
-            border-radius: 12px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-            max-width: 480px;
-            width: 100%;
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, #60a5fa 0%, transparent 40%),
+                        radial-gradient(circle at bottom right, #a5b4fc 0%, transparent 35%),
+                        linear-gradient(180deg, #020617 0%, #111827 100%);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .app-shell {
+            width: min(100%, 680px);
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            overflow: hidden;
+        }
+
+        .hero {
+            padding: 2.5rem 2rem 1.5rem;
             text-align: center;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #4a90e2;
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.05em;
         }
-        form {
-            margin-bottom: 2rem;
+
+        .hero p {
+            margin: 1rem auto 0;
+            max-width: 44rem;
+            color: var(--muted);
+            line-height: 1.75;
         }
+
+        .card {
+            margin: 0 auto;
+            padding: 1.5rem;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            max-width: 560px;
+        }
+
+        .cta {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
         button {
-            background-color: #4a90e2;
             border: none;
-            color: white;
-            padding: 0.75rem 1.75rem;
-            font-size: 1.1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.25s ease;
-        }
-        button:hover {
-            background-color: #357abd;
-        }
-        h2 {
-            color: #222;
-            margin-top: 1.5rem;
+            border-radius: 999px;
+            padding: 0.95rem 2rem;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            font-size: 1rem;
             font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+            box-shadow: 0 14px 30px rgba(56, 189, 248, 0.26);
         }
-        p {
-            background: #e9f0ff;
-            border-left: 4px solid #4a90e2;
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 36px rgba(56, 189, 248, 0.32);
+        }
+
+        .fact-block {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .fact-block h2 {
+            margin: 0 0 0.75rem;
+            font-size: 1.05rem;
+            letter-spacing: 0.02em;
+            color: #f8fafc;
+        }
+
+        .fact {
+            background: rgba(15, 23, 42, 0.96);
+            border-left: 4px solid var(--accent);
             padding: 1rem 1.25rem;
-            border-radius: 6px;
-            font-size: 1.15rem;
-            line-height: 1.5;
-            color: #444;
-            user-select: text;
+            border-radius: 16px;
+            line-height: 1.8;
+            color: #e2e8f0;
+            min-height: 5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .fact + .fact {
+            margin-top: 1rem;
+        }
+
+        .note {
+            margin-top: 1.25rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 520px) {
+            .hero {
+                padding: 2rem 1.25rem 1rem;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
+
+            button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🐱 Random Cat Fact</h1>
-        <form method="post" aria-label="Get a random cat fact">
-            <button type="submit">Get a Cat Fact</button>
-        </form>
+    <main class="app-shell">
+        <section class="hero">
+            <h1>🐾 Cat Facts Studio</h1>
+            <p>Press the button to fetch a fresh, fun cat fact in English. If available, you'll also get a Romanian translation right below.</p>
+        </section>
 
-        {% if cat_fact_en %}
-            <h2>English:</h2>
-            <p>{{ cat_fact_en }}</p>
+        <section class="card">
+            <form method="post" aria-label="Fetch a random cat fact">
+                <div class="cta">
+                    <button type="submit">Fetch a Cat Fact</button>
+                </div>
+            </form>
 
-            {% if cat_fact_ro %}
-                <h2>Romanian:</h2>
-                <p>{{ cat_fact_ro }}</p>
+            {% if cat_fact_en %}
+                <div class="fact-block">
+                    <h2>English Fact</h2>
+                    <div class="fact">{{ cat_fact_en }}</div>
+                </div>
+
+                {% if cat_fact_ro %}
+                    <div class="fact-block">
+                        <h2>Romanian Translation</h2>
+                        <div class="fact">{{ cat_fact_ro }}</div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <p class="note">Click the button to discover a new cat fact.</p>
             {% endif %}
-        {% endif %}
-    </div>
+        </section>
+    </main>
 </body>
 </html>

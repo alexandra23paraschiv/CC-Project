@@ -1,12 +1,12 @@
 Proiect Cloud Computing
 Random cat fact
 
-Trașcă Lucian-George
-1134 SIMPRE
+Paraschiv Alexandra Maria
+1153 SIMPRE
 
 Link-uri
 Aplicație: https://random-cat-fact.onrender.com
-Github: https://github.com/LucianG06/ProiectCloudComputng
+Github: https://github.com/alexandra23paraschiv/CC-Project
 Link video: https://youtu.be/BU3ooMeYIeQ
 
 
