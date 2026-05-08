@@ -1,5 +1,5 @@
 Proiect Cloud Computing
-Random cat fact
+Cat Facts Studio
 
 Paraschiv Alexandra Maria
 1153 SIMPRE
@@ -11,24 +11,24 @@ Link video: https://youtu.be/BU3ooMeYIeQ
 
 
 Introducere
-Aplicațiile web sunt instrumente esențiale în era digitală, oferind acces rapid și facil la diverse informații și servicii. În acest context, Random Cat Fact App vine să ofere utilizatorilor o experiență simplă și plăcută pentru a descoperi curiozități interesante despre pisici, traduse automat în limba română pentru o accesibilitate mai mare.
-Această aplicație combate active plictiseala. Astfel, utilizatorii pot obține rapid și ușor informații utile și distractive, în limba română, printr-un singur click.
+Aplicațiile web sunt instrumente esențiale în era digitală, oferind acces rapid și facil la diverse informații și servicii. Cat Facts Studio App oferă utilizatorilor o experiență simplă și plăcută pentru a descoperi curiozități interesante despre pisici, cu traduceri automate în limba română.
+Această aplicație reduce plictiseala și face informațiile despre pisici disponibile într-un mod rapid și accesibil, printr-un singur click.
 
 
 Descriere problemă
-Chiar dacă limba engleză este utilizată pe scară largă pe internet, un procent semnificativ din populație nu o stăpânește fluent. Aceasta limitează accesul la informație și poate reduce experiența utilizatorului. Mai mult, nu toți utilizatorii au acces constant la internet, ceea ce îngreunează folosirea serviciilor de traducere online în timp real.
-Pentru a depăși aceste bariere, Random Cat Fact App integrează un serviciu de traducere automatizată prin API-ul DeepL, astfel încât textele afișate să fie disponibile imediat și clar în limba română. Aceasta crește accesibilitatea și îmbunătățește experiența utilizatorului, făcând aplicația utilă unui public mai larg.
+Deși limba engleză este utilizată pe scară largă pe internet, mulți utilizatori nu o stăpânesc fluent. Aceasta limitează accesul la informație și afectează experiența online. În plus, nu toți utilizatorii au acces constant la servicii avansate de traducere.
+Pentru a depăși aceste bariere, Cat Facts Studio App integrează traducerea automată prin API-ul MyMemory, astfel încât textele afișate să fie disponibile imediat și clar în limba română. Aceasta crește accesibilitatea și îmbunătățește experiența utilizatorului.
 
 
 Descriere API
-Aplicația folosește două servicii cloud prin API REST:
+Aplicația folosește trei servicii externe prin API REST:
 •	Cat Fact API
 Sursa principală de date este https://catfact.ninja/fact, un API public care oferă fapte random despre pisici în limba engleză.
-•	DeepL API
-Pentru traducerea automată a textului, aplicația folosește API-ul DeepL, unul dintre cele mai avansate servicii de traducere automată disponibile. Printr-o cerere POST către https://api-free.deepl.com/v2/translate, textul în engleză este tradus în limba română (sau orice altă limbă selectată).
-Acest mecanism oferă traduceri rapide, precise și permite adaptarea conținutului în funcție de nevoile utilizatorului.
+•	MyMemory Translation API
+Pentru traducerea automată a textului, aplicația folosește API-ul MyMemory. Printr-o cerere GET către https://api.mymemory.translated.net/get, textul în engleză este tradus în limba română folosind parametrul `langpair=en|ro`.
+Acest mecanism oferă o traducere gratuită și simplă, fără a necesita un API key.
 •	Mongo DB
-Pentru a salva într-o bază de date fact-urile generate.
+Pentru a salva în baza de date faptele generate.
 
 
 Tehnologii folosite
@@ -39,7 +39,7 @@ Flask (Python) — pentru expunerea serviciilor web și integrarea cu API-urile 
 HTML și CSS simplu, pentru o interfață ușor de utilizat și adaptabilă.
 •	Requests (Python):
 Biblioteca utilizată pentru efectuarea cererilor HTTP către API-urile externe.
-•	DeepL API:
+•	MyMemory API:
 Serviciul cloud pentru traduceri automate.
 •	Cat Fact API:
 Sursa datelor despre pisici.
@@ -53,20 +53,20 @@ Flux de date
 
 1.	Exemple de requesturi
 a.	Request de tip GET pentru a obține un random cat fact
-b.	Request de tip POST pentru a obtine o traducere
+b.	Request de tip POST pentru a obține traducerea în limba română
 
 2.	Metode HTTP folosite
 a.	GET pentru a obține un random cat fact
-b.	POST pentru a traduce in română acel fact
+b.	POST pentru a traduce în română acel fact
 
-3.	Authentificare și servicii utilizate
-Utilizarea API ului https://catfact.ninja/fact este gratis și nu necesită un API KEY.
-Utilizarea API ului de traducere este de asemenea gratis pana la 500.000 de caractere, dar necesită un API KEY pe care îl poti obține la crearea unui cont.
+3.	Autentificare și servicii utilizate
+Utilizarea API-ului https://catfact.ninja/fact este gratuită și nu necesită API key.
+Utilizarea API-ului MyMemory pentru traducere este gratuită și nu necesită autentificare.
 
 
 Referințe
 
-1.	https://developers.deepl.com/docs/
+1.	https://mymemory.translated.net/
 2.	https://catfact.ninja/
 3.	https://flask.palletsprojects.com/
 4.	https://requests.readthedocs.io/en/latest/
