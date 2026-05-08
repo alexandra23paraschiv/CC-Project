@@ -5,7 +5,7 @@ Paraschiv Alexandra Maria
 1153 SIMPRE
 
 Link-uri
-Aplicație: https://random-cat-fact.onrender.com
+Aplicație: https://cc-project-tsr4.onrender.com/
 Github: https://github.com/alexandra23paraschiv/CC-Project
 Link video: https://youtu.be/BU3ooMeYIeQ
 
