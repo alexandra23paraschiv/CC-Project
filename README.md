@@ -7,7 +7,7 @@ Paraschiv Alexandra Maria
 Link-uri
 Aplicație: https://cc-project-tsr4.onrender.com/
 Github: https://github.com/alexandra23paraschiv/CC-Project
-Link video: https://youtu.be/BU3ooMeYIeQ
+Link video: https://youtu.be/IIKwWpE_g4w
 
 
 Introducere
